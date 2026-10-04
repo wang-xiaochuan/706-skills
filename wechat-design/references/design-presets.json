@@ -1,0 +1,500 @@
+{
+  "_meta": {
+    "version": "2.0",
+    "description": "706 wechat-publish 二维设计系统：第一层 颜色组合 + 第二层 排版模式，独立选择、自由组合。",
+    "usage": "python md_to_wechat.py --palette warm-paper --mode chapter=jumbo header=dark-block card=rounded quote=left-border bullet=dash divider=gold-rule emphasis=color-switch density=normal align=justify",
+    "source": "颜色灵感来自 beautiful-html-templates (34套)，排版模式来自 706 微信出版经验。"
+  },
+
+  "color_palettes": {
+    "green": {
+      "name": "经典绿",
+      "name_en": "Classic Green",
+      "inspiration": "706 原创",
+      "mood": "安静、克制、知识分子气",
+      "colors": {
+        "bg":        "rgb(242,247,244)",
+        "accent":    "rgb(26,123,90)",
+        "body":      "rgb(102,102,102)",
+        "title":     "rgb(26,26,26)",
+        "aux":       "rgb(153,153,153)",
+        "caption":   "rgb(170,170,170)",
+        "divider":   "rgb(217,234,227)",
+        "accent_bg": "rgb(233,243,238)"
+      }
+    },
+    "warm-paper": {
+      "name": "暖纸",
+      "name_en": "Warm Paper",
+      "inspiration": "Soft Editorial",
+      "mood": "温暖、柔软、文学期刊质感",
+      "colors": {
+        "bg":        "#F2EEDF",
+        "accent":    "#B7C7A8",
+        "body":      "#5C5345",
+        "title":     "#2A241B",
+        "aux":       "#8A8276",
+        "caption":   "#A0988A",
+        "divider":   "#D9D2C2",
+        "accent_bg": "#F5F0E3"
+      }
+    },
+    "navy-gold": {
+      "name": "深蓝金",
+      "name_en": "Navy & Gold",
+      "inspiration": "Signal",
+      "mood": "权威、克制、有分量的安静",
+      "colors": {
+        "bg":        "#F0ECE3",
+        "accent":    "#C8A870",
+        "body":      "#3A4560",
+        "title":     "#1C2644",
+        "aux":       "#8A8D98",
+        "caption":   "#9A9DA6",
+        "divider":   "#CAC4B4",
+        "accent_bg": "#E8E4D8",
+        "bg_dark":   "#1C2644",
+        "text_on_dark": "#F0ECE3",
+        "accent_on_dark": "#C8A870"
+      }
+    },
+    "burgundy": {
+      "name": "勃艮第三色",
+      "name_en": "Burgundy Tri-Tone",
+      "inspiration": "Editorial Tri-Tone",
+      "mood": "温暖的文学杂志、有态度的文化评论",
+      "colors": {
+        "bg":        "#FCF5E8",
+        "accent":    "#F2B6C6",
+        "body":      "#7A1F35",
+        "title":     "#7A1F35",
+        "aux":       "#A0727E",
+        "caption":   "#C4989E",
+        "divider":   "#E8D5C0",
+        "accent_bg": "#FDF0E8",
+        "accent2":   "#F2D86A",
+        "accent3":   "#C82650"
+      }
+    },
+    "parchment-indigo": {
+      "name": "羊皮纸靛蓝",
+      "name_en": "Parchment & Indigo",
+      "inspiration": "Biennale Yellow",
+      "mood": "文化展览、艺术气息、温暖而不燥",
+      "colors": {
+        "bg":        "#E9E5DB",
+        "accent":    "#F1EE2E",
+        "body":      "#1B2566",
+        "title":     "#1B2566",
+        "aux":       "#5C6180",
+        "caption":   "#8A8D9E",
+        "divider":   "#1B2566",
+        "accent_bg": "#F6F5E8"
+      }
+    },
+    "terracotta": {
+      "name": "陶土锈红",
+      "name_en": "Terracotta",
+      "inspiration": "Long Table",
+      "mood": "亲密、温暖、手工感、晚餐俱乐部",
+      "colors": {
+        "bg":        "#FAF1E2",
+        "accent":    "#B53D2A",
+        "body":      "#3D2018",
+        "title":     "#3D2018",
+        "aux":       "#9B7B70",
+        "caption":   "#B0A090",
+        "divider":   "#D4A090",
+        "accent_bg": "#FDF5EC"
+      }
+    },
+    "ink-orange": {
+      "name": "墨橙",
+      "name_en": "Ink & Orange",
+      "inspiration": "Broadside",
+      "mood": "宣言式、有态度、青年能量、标语感",
+      "colors": {
+        "bg":        "#F0ECE5",
+        "accent":    "#E85D26",
+        "body":      "#111111",
+        "title":     "#111111",
+        "aux":       "#6B6B6B",
+        "caption":   "#888880",
+        "divider":   "#D0CCC5",
+        "accent_bg": "#FDF0E8",
+        "bg_dark":   "#111111",
+        "text_on_dark": "#F0ECE5",
+        "accent_on_dark": "#E85D26"
+      }
+    },
+    "neo-brutal": {
+      "name": "新粗野",
+      "name_en": "Neo-Brutal",
+      "inspiration": "Neo-Grid Bold",
+      "mood": "粗野、直接、建筑感、科技批判",
+      "colors": {
+        "bg":        "#F5F4EF",
+        "accent":    "#E6FF3D",
+        "body":      "#0A0A0A",
+        "title":     "#0A0A0A",
+        "aux":       "#6B6B6B",
+        "caption":   "#888888",
+        "divider":   "#0A0A0A",
+        "accent_bg": "#E6FF3D"
+      }
+    },
+    "navy-gallery": {
+      "name": "深蓝画廊",
+      "name_en": "Navy Gallery",
+      "inspiration": "Vellum",
+      "mood": "画廊展览墙、哲学思辨、深夜阅读、档案感",
+      "colors": {
+        "bg":        "#2A3870",
+        "accent":    "#3A7878",
+        "body":      "#C8BC68",
+        "title":     "#E8D85C",
+        "aux":       "#8A8466",
+        "caption":   "#7A7A5A",
+        "divider":   "#504D30",
+        "accent_bg": "#242F60",
+        "accent_bright": "#F5E168"
+      }
+    }
+  },
+
+  "layout_modes": {
+    "chapter": {
+      "_description": "章节标题的编号和装饰风格",
+      "options": {
+        "numbered": {
+          "name": "数字编号",
+          "desc": "01. ENGLISH  [ 中文标签 ] — 当前默认",
+          "wechat_safe": true
+        },
+        "roman": {
+          "name": "罗马数字",
+          "desc": "i. english  [ 中文标签 ] — 适合文学性内容",
+          "wechat_safe": true
+        },
+        "jumbo": {
+          "name": "大数字入口",
+          "desc": "72px 大数字 + 1px 全宽发丝线 — 适合艺术/设计内容",
+          "wechat_safe": true
+        },
+        "simple": {
+          "name": "纯中文",
+          "desc": "仅 20px bold 中文标题，无编号 — 最简洁",
+          "wechat_safe": true
+        }
+      }
+    },
+    "header": {
+      "_description": "文章头部区块样式",
+      "options": {
+        "standard": {
+          "name": "标准",
+          "desc": "浅底标签 + 38px 衬线标题 + 英文副标题 + 30px 装饰线 — 当前默认",
+          "wechat_safe": true
+        },
+        "dark-block": {
+          "name": "深色块",
+          "desc": "独立深底 table 块 + 亮色标签(MONO) + 36px 金色装饰线 + 亮色标题 — 需色板提供 bg_dark/text_on_dark",
+          "wechat_safe": true,
+          "requires_colors": ["bg_dark", "text_on_dark"]
+        },
+        "minimal": {
+          "name": "极简",
+          "desc": "无栏目标签、无装饰线，仅衬线标题 + 副标题 — 适合个人随笔",
+          "wechat_safe": true
+        }
+      }
+    },
+    "card": {
+      "_description": "引用块/信息卡片的形状",
+      "options": {
+        "sharp": {
+          "name": "直角",
+          "desc": "border-radius: 0 — 当前默认",
+          "wechat_safe": true
+        },
+        "rounded": {
+          "name": "圆角",
+          "desc": "border-radius: 14px — Soft Editorial 风格",
+          "wechat_safe": true
+        },
+        "pill": {
+          "name": "药丸",
+          "desc": "border-radius: 999px — 仅用于标签/按钮等小元素",
+          "wechat_safe": true
+        }
+      }
+    },
+    "quote": {
+      "_description": "引用块样式",
+      "options": {
+        "left-border": {
+          "name": "左边框",
+          "desc": "border-left: 3px solid accent — 当前默认",
+          "wechat_safe": true
+        },
+        "outlined": {
+          "name": "描边",
+          "desc": "全边框 1.5px solid accent，透明背景 — Long Table 风格",
+          "wechat_safe": true
+        },
+        "filled": {
+          "name": "实色填充",
+          "desc": "accent_bg 实色背景 + 可选圆角 — 更醒目的引用",
+          "wechat_safe": true
+        }
+      }
+    },
+    "bullet": {
+      "_description": "列表标记符号",
+      "options": {
+        "dot": {
+          "name": "圆点",
+          "desc": "· — 当前默认",
+          "wechat_safe": true
+        },
+        "dash": {
+          "name": "全角破折号",
+          "desc": "— em-dash 替换圆点 — Signal 风格，更克制",
+          "wechat_safe": true
+        },
+        "numbered-mono": {
+          "name": "等宽编号",
+          "desc": "用等宽字体数字计数 — Vellum 风格（需手动维护编号）",
+          "wechat_safe": true
+        }
+      }
+    },
+    "divider": {
+      "_description": "分隔线样式",
+      "options": {
+        "accent-short": {
+          "name": "短强调线",
+          "desc": "30px × 1px accent 色 — 当前默认",
+          "wechat_safe": true
+        },
+        "gold-rule": {
+          "name": "金线",
+          "desc": "36px × 1px — Signal 风格",
+          "wechat_safe": true
+        },
+        "hairline-full": {
+          "name": "全宽发丝线",
+          "desc": "100% × 1px — Biennale Yellow 风格",
+          "wechat_safe": true
+        },
+        "dashed": {
+          "name": "虚线",
+          "desc": "1px dashed — Long Table 风格",
+          "wechat_safe": true
+        }
+      }
+    },
+    "emphasis": {
+      "_description": "正文内强调方式（**bold** 渲染为）",
+      "options": {
+        "bold-dark": {
+          "name": "深色加粗",
+          "desc": "color: title + font-weight: bold — 当前默认",
+          "wechat_safe": true
+        },
+        "color-switch": {
+          "name": "颜色切换",
+          "desc": "换用 accent 色或 accent_bright 色 — CJK 无 italic 轴的补偿策略",
+          "wechat_safe": true
+        },
+        "mark-highlight": {
+          "name": "荧光笔",
+          "desc": "background-color: accent + padding: 0 4px — 仅对 !!text 语法触发",
+          "wechat_safe": true
+        }
+      }
+    },
+    "density": {
+      "_description": "内容密度/段落间距",
+      "options": {
+        "sparse": {
+          "name": "宽松",
+          "desc": "段落间距 24px，章节间距 80px",
+          "wechat_safe": true,
+          "paragraph_gap": 24
+        },
+        "normal": {
+          "name": "标准",
+          "desc": "段落间距 16px，章节间距 60px — 当前默认",
+          "wechat_safe": true,
+          "paragraph_gap": 16
+        },
+        "dense": {
+          "name": "紧凑",
+          "desc": "段落间距 8px，章节间距 40px — 信息密度优先",
+          "wechat_safe": true,
+          "paragraph_gap": 8
+        }
+      }
+    },
+    "alignment": {
+      "_description": "文章整体对齐",
+      "options": {
+        "justify": {
+          "name": "两端对齐",
+          "desc": "text-align: justify — 当前默认，适合中文长文",
+          "wechat_safe": true
+        },
+        "left": {
+          "name": "左对齐",
+          "desc": "text-align: left — 更现代，适合短段落",
+          "wechat_safe": true
+        },
+        "center": {
+          "name": "居中",
+          "desc": "text-align: center — 仅适合特殊场景（Vellum 风格）",
+          "wechat_safe": true
+        }
+      }
+    }
+  },
+
+  "defaults": {
+    "_description": "文章类型 → 推荐 (调色板, 排版) 组合。仅作默认推荐，用户可自由覆盖。",
+    "deep-article": {
+      "label": "深度长文",
+      "palette": "warm-paper",
+      "modes": {
+        "chapter": "numbered",
+        "header": "standard",
+        "card": "rounded",
+        "quote": "left-border",
+        "bullet": "dot",
+        "divider": "accent-short",
+        "emphasis": "bold-dark",
+        "density": "normal",
+        "alignment": "justify"
+      }
+    },
+    "annual-report": {
+      "label": "年度报告 / 白皮书",
+      "palette": "navy-gold",
+      "modes": {
+        "chapter": "numbered",
+        "header": "dark-block",
+        "card": "sharp",
+        "quote": "left-border",
+        "bullet": "dash",
+        "divider": "gold-rule",
+        "emphasis": "bold-dark",
+        "density": "sparse",
+        "alignment": "justify"
+      }
+    },
+    "culture-review": {
+      "label": "文化评论 / 论坛回顾",
+      "palette": "burgundy",
+      "modes": {
+        "chapter": "numbered",
+        "header": "standard",
+        "card": "rounded",
+        "quote": "filled",
+        "bullet": "dot",
+        "divider": "accent-short",
+        "emphasis": "color-switch",
+        "density": "normal",
+        "alignment": "justify"
+      }
+    },
+    "art-exhibition": {
+      "label": "艺术展览 / 创意活动",
+      "palette": "parchment-indigo",
+      "modes": {
+        "chapter": "jumbo",
+        "header": "standard",
+        "card": "sharp",
+        "quote": "left-border",
+        "bullet": "dash",
+        "divider": "hairline-full",
+        "emphasis": "bold-dark",
+        "density": "sparse",
+        "alignment": "justify"
+      }
+    },
+    "intimate-gathering": {
+      "label": "小型聚会 / 晚宴",
+      "palette": "terracotta",
+      "modes": {
+        "chapter": "simple",
+        "header": "minimal",
+        "card": "pill",
+        "quote": "outlined",
+        "bullet": "dash",
+        "divider": "dashed",
+        "emphasis": "bold-dark",
+        "density": "sparse",
+        "alignment": "left"
+      }
+    },
+    "manifesto": {
+      "label": "宣言 / 态度 / 活动召集",
+      "palette": "ink-orange",
+      "modes": {
+        "chapter": "simple",
+        "header": "dark-block",
+        "card": "sharp",
+        "quote": "filled",
+        "bullet": "dash",
+        "divider": "hairline-full",
+        "emphasis": "bold-dark",
+        "density": "sparse",
+        "alignment": "left"
+      }
+    },
+    "tech-critique": {
+      "label": "科技评论 / 数据文章",
+      "palette": "neo-brutal",
+      "modes": {
+        "chapter": "numbered",
+        "header": "standard",
+        "card": "sharp",
+        "quote": "filled",
+        "bullet": "dash",
+        "divider": "hairline-full",
+        "emphasis": "mark-highlight",
+        "density": "dense",
+        "alignment": "justify"
+      }
+    },
+    "philosophy": {
+      "label": "哲学思辨 / 深夜阅读",
+      "palette": "navy-gallery",
+      "modes": {
+        "chapter": "simple",
+        "header": "minimal",
+        "card": "sharp",
+        "quote": "left-border",
+        "bullet": "numbered-mono",
+        "divider": "hairline-full",
+        "emphasis": "color-switch",
+        "density": "sparse",
+        "alignment": "center"
+      }
+    },
+    "general": {
+      "label": "通用 / 活动预告",
+      "palette": "green",
+      "modes": {
+        "chapter": "numbered",
+        "header": "standard",
+        "card": "sharp",
+        "quote": "left-border",
+        "bullet": "dot",
+        "divider": "accent-short",
+        "emphasis": "bold-dark",
+        "density": "normal",
+        "alignment": "justify"
+      }
+    }
+  }
+}

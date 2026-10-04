@@ -1,0 +1,31 @@
+{
+  "skill_name": "resume-hr-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我上传了一个 AI Ecosystem Program Manager 职位和一份中文简历。请先把职位规范化成岗位画像，再逐项对比简历证据，给出透明覆盖度、模拟 HR 初筛结论和修改优先级。只做 review，不要改写整份简历。",
+      "expected_output": "先固定岗位画像，再输出逐项要求—证据矩阵、透明覆盖度、硬门槛状态、带置信度的模拟初筛结论和 P0/P1/P2；区分个人成果与组织整体数据，不改动源文件。",
+      "files": [
+        "evals/fixtures/sample-ai-ecosystem-role.md",
+        "<你的简历文件>"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我只上传了一个职位 JD，还没上传简历。请先整理岗位画像和要求权重，告诉我接下来需要用简历验证哪些证据；不要虚构候选人结论。",
+      "expected_output": "输出 role-profile-only 结果，区分硬门槛、核心要求、加分项和未知项；没有简历时不输出候选人覆盖度或推进结论。",
+      "files": [
+        "evals/fixtures/sample-ai-ecosystem-role.md"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "请对比这个职位与上传简历，特别检查活动规模、社群增长和 AI 工作流数字：哪些要求是简历直接覆盖，哪些只是关键词，哪些是 presentation gap，哪些数字可能把团队成果算到了个人头上。只输出审视报告。",
+      "expected_output": "逐项映射 JD 与简历证据，区分 direct、adjacent、label-only、missing，并标记 presentation-gap、evidence-gap 等差距；高风险 claim 使用证据状态，不自行补数字。",
+      "files": [
+        "evals/fixtures/sample-ai-ecosystem-role.md",
+        "<你的简历文件>"
+      ]
+    }
+  ]
+}

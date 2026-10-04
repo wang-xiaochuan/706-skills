@@ -1,0 +1,82 @@
+[
+  {
+    "query": "我这里有二十多份地方政策、公众号文章和采访，想写一篇一万字左右、带案例和脚注的中文研究报告，最后还要做英文版和 Word，先帮我搭研究 harness。",
+    "should_trigger": true
+  },
+  {
+    "query": "请把这个已经写了四万字的城市史报告按照新 outline 真正重编，不要删旧事实，重写后做事实、逻辑、声口、图片和双语对齐。",
+    "should_trigger": true
+  },
+  {
+    "query": "我们准备研究中国独立书店的生命周期，既要搜各地案例又要做项目目录和关闭年表，最后交付 HTML、Word 和项目方阅读包。",
+    "should_trigger": true
+  },
+  {
+    "query": "来一个中型叙事研究，资料大部分在本地，还有一些得去网上补；从收集、第一稿、事实核查一直做到可发送压缩包，不用每一步问我。",
+    "should_trigger": true
+  },
+  {
+    "query": "这个报告为什么事实很多却读起来很散？请审计连接性，重新组织案例，但所有引用和图片要有去向，附录另外成册。",
+    "should_trigger": true
+  },
+  {
+    "query": "先只规划，不要搜：我需要一套约两万字的跨国青年住房研究路径，包括数据库、访谈、证据分级、案例字段和最终验收。",
+    "should_trigger": true
+  },
+  {
+    "query": "把这批网页、口述史、PDF 和图片变成一份能复现的研究型长文，必须区分项目自述、第三方证据和作者推论。",
+    "should_trigger": true
+  },
+  {
+    "query": "我们要做法规目录、项目 catalog、事件 timeline 和叙事正文，但不希望附录比正文还长，帮我设计并执行完整生产流程。",
+    "should_trigger": true
+  },
+  {
+    "query": "这份中文研究稿已经基本稳定，请核对脚注首次出现顺序、图片 caption 和来源，再翻译英文并输出 HTML/Word/PDF。",
+    "should_trigger": true
+  },
+  {
+    "query": "我要把上一项研究的整个脉络做成长期可迭代的 goal/state/gate harness，之后还会不断加入案例和新版出版物。",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我把这段 800 字的活动介绍改得更有温度，今晚就发公众号。",
+    "should_trigger": false
+  },
+  {
+    "query": "把这个中文 Word 逐句翻译成英文，格式保持不变，不需要查资料。",
+    "should_trigger": false
+  },
+  {
+    "query": "请读一下这篇论文并给我五条摘要和三个讨论问题。",
+    "should_trigger": false
+  },
+  {
+    "query": "我有一份 CSV，帮我统计每个城市的项目数量并画柱状图。",
+    "should_trigger": false
+  },
+  {
+    "query": "把这个图片文件夹打包成 Base64 HTML 发给 Claude。",
+    "should_trigger": false
+  },
+  {
+    "query": "为周六的讲座写一个 Notion 招募页面，需要标题、嘉宾介绍和报名方式。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我诊断为什么现有 PDF 第 13 页表格溢出了，先不要修改源文件。",
+    "should_trigger": false
+  },
+  {
+    "query": "整理这个微信群最近发的图片，按活动归档到 706-media。",
+    "should_trigger": false
+  },
+  {
+    "query": "搜索微信公众号上最近一个月阅读量过万的数字游民文章，先给我链接和数据。",
+    "should_trigger": false
+  },
+  {
+    "query": "给这篇已经定稿的文章补三张插画并调整成统一视觉风格。",
+    "should_trigger": false
+  }
+]

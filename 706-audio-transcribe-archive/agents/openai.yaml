@@ -1,0 +1,6 @@
+interface:
+  display_name: "706 Audio Transcription Archive"
+  short_description: "音频转录并归档为 706 写作素材"
+  default_prompt: "Use $706-audio-transcribe-archive to transcribe this audio and archive it into the 706 knowledge vault."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,4 @@
+interface:
+  display_name: "微信公众号智能归档"
+  short_description: "按月份搜索并归档公众号文章为可检索单文件 HTML"
+  default_prompt: "使用 $wechat-article-smart-archive 按公众号名称和日期范围搜索公开文章，并归档为图片可查询的单文件 HTML。"

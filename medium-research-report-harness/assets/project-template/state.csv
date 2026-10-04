@@ -1,0 +1,15 @@
+stage_id,stage_name,status,handoff_path
+00,scope,ACTIVE,stages/00-scope/handoff.md
+01,corpus,LOCKED,stages/01-corpus/handoff.md
+02,evidence-map,LOCKED,stages/02-evidence-map/handoff.md
+03,coverage,LOCKED,stages/03-coverage/handoff.md
+04,structured-research,LOCKED,stages/04-structured-research/handoff.md
+05,prewriting,LOCKED,stages/05-prewriting/handoff.md
+06,architecture,LOCKED,stages/06-architecture/handoff.md
+07,primary-draft,LOCKED,stages/07-primary-draft/handoff.md
+08,research-audit,LOCKED,stages/08-research-audit/handoff.md
+09,narrative-audit,LOCKED,stages/09-narrative-audit/handoff.md
+10,visuals,LOCKED,stages/10-visuals/handoff.md
+11,translation,LOCKED,stages/11-translation/handoff.md
+12,publication,LOCKED,stages/12-publication/handoff.md
+13,release,LOCKED,stages/13-release/handoff.md

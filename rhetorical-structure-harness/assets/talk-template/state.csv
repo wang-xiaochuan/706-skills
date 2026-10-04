@@ -1,0 +1,7 @@
+stage,status,handoff
+00-brief,ACTIVE,brief.md
+01-architecture,LOCKED,architecture.md
+02-rhetoric,LOCKED,sections/
+03-script,LOCKED,script.md
+04-delivery,LOCKED,delivery-notes.md
+05-package,LOCKED,

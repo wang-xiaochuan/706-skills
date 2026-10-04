@@ -1,0 +1,29 @@
+{
+  "skill_name": "speech-to-attention-video",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我有一个 45 分钟单机位访谈和一份 docx 逐字稿。先不要剪，先给出完整叙事版、主题版和 60-90 秒切片的计划，并说明什么时候需要我确认。",
+      "expected_output": "停在计划和 EDL 阶段；保留原始时间码；给出版本矩阵、三个人工门和发布边界。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "这个目录有 90 分钟讲座的三个机位、一个 PPT 录屏和多人讨论。请剪出覆盖主要主题的长版，再做主题切片、字幕、嘉宾姓名和封面，最后给我可以上传的文件包。",
+      "expected_output": "建立 source/camera/speaker register；先样片后批量；生成完整叙事版、主题版、注意力切片、SRT、横竖封面、manifest 和完整解码 QA。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "启动 09 视频员工。我暂时没给素材，你先告诉我员工是谁、当前任务是什么、Qwen 和 Codex 是否能找到同一个视频 Skill，不要虚构生产任务。",
+      "expected_output": "完成 Bootstrap 只读加载与 preflight；报告待命、零或真实 inbox 数、canonical Skill 和双运行时入口；不创建虚构任务。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "这个竖屏视频已经烧录了中文和英文字幕。请识别语音，再增加韩语字幕，保持原画幅，不要增加黑边或覆盖原字幕，并生成可直接查看的成片。",
+      "expected_output": "先检测 FFmpeg 字幕能力和韩文字体；若 subtitles/drawtext 缺失，直接使用透明 PNG + qtrle + overlay；先生成 10-15 秒样片，再生成保持原分辨率的完整 MP4、韩语 SRT、manifest 和视觉 QA。",
+      "files": []
+    }
+  ]
+}

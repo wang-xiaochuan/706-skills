@@ -1,0 +1,33 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{Songti SC}
+\setmonofont{Menlo}
+
+% 中文断行与排版
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+\emergencystretch = 3em
+\tolerance = 1000
+\pretolerance = 200
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue}
+\usepackage{longtable,booktabs,array,calc,xcolor}
+
+\renewcommand{\baselinestretch}{1.8}
+
+\title{中国替代社区与共居社区白皮书（2026）}
+\author{姓名}
+
+\begin{document}
+
+% 兼容 pandoc 生成的 longtable 无标题表格
+\newcounter{none}
+
+\maketitle
+
+$body$
+
+\end{document}

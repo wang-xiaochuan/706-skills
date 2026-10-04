@@ -1,0 +1,65 @@
+{
+  "symbols": ["BTCUSDT", "ETHUSDT", "SOLUSDT", "BNBUSDT"],
+  "base_interval": "1h",
+  "synth_window": 4,
+  "fetch_limit": 240,
+  "fetch_1d_limit": 60,
+  "indicators": {
+    "ema_fast": 20,
+    "ema_slow": 50,
+    "macd_fast": 12,
+    "macd_slow": 26,
+    "macd_signal": 9,
+    "rsi_period": 14,
+    "rsi_overbought": 70,
+    "rsi_oversold": 30,
+    "bb_period": 20,
+    "bb_std": 2.0,
+    "atr_period": 14
+  },
+  "features_enabled": {
+    "ema_cross": true, "ema200": true, "adx": true, "htf_align": true,
+    "macd": true, "rsi": true, "stoch_rsi": true, "roc": true,
+    "bollinger": true, "bb_width": true, "atr_pct": true, "keltner": true,
+    "volume": true, "obv": true, "taker_ratio": true,
+    "funding": true, "oi_change": true, "basis": true, "liquidations": false,
+    "top_trader_ls": true, "retail_ls": true, "fear_greed": true, "smart_retail_div": true
+  },
+  "regime": {
+    "adx_trend_th": 25,
+    "adx_range_th": 20,
+    "bbw_range_pctile": 30
+  },
+  "weights_by_regime": {
+    "trending_up":   {"trend": 3.0, "momentum": 2.0, "volatility": 1.0, "volume": 1.5, "microstructure": 1.5, "sentiment": 1.0},
+    "trending_down": {"trend": 3.0, "momentum": 2.0, "volatility": 1.0, "volume": 1.5, "microstructure": 1.5, "sentiment": 1.0},
+    "ranging":       {"trend": 1.0, "momentum": 1.5, "volatility": 2.5, "volume": 1.5, "microstructure": 2.0, "sentiment": 1.5}
+  },
+  "cache": {
+    "db_path": "logs/cache.sqlite",
+    "ttl": {
+      "funding": 1800,
+      "oi": 900,
+      "basis": 600,
+      "top_ls": 900,
+      "retail_ls": 900,
+      "fear_greed": 21600,
+      "kline_1d": 7200
+    }
+  },
+  "thresholds": {
+    "strong_buy": 6.0,
+    "buy": 2.0,
+    "sell": -2.0,
+    "strong_sell": -6.0
+  },
+  "output": {
+    "log_dir": "logs",
+    "daily_report_hour_utc": 0
+  },
+  "api": {
+    "base_url": "https://api.binance.com",
+    "timeout_seconds": 15,
+    "retry_count": 3
+  }
+}

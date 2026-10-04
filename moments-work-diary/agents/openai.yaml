@@ -1,0 +1,4 @@
+interface:
+  display_name: "Moments Work Diary"
+  short_description: "Turn daily work notes into polished personal Moments posts."
+  default_prompt: "把我今天的工作素材整理成一条克制、具体、有现场感的朋友圈工作日报。"

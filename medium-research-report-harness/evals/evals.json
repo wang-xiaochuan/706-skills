@@ -1,0 +1,38 @@
+{
+  "skill_name": "medium-research-report-harness",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我想做一份大概一万五千字的中文叙事研究，主题是中国城市里的青年互助照护。资料既有我下载的公众号网页、两份访谈，也需要继续查政策和新闻。最后希望有中文母稿、英文版、案例附录、图片、HTML 和 Word，而且事实核查以后再统一声口。请搭一个 harness 并开始执行。",
+      "expected_output": "Creates a staged research harness with separate corpus/evidence/narrative/publication layers, source and claim registers, coverage protocol, prewriting plan, audited drafting sequence, bilingual alignment, and publication packages.",
+      "files": [],
+      "assertions": [
+        {"text": "The response separates evidence, narrative, and publication layers."},
+        {"text": "The workflow performs fact and citation audits before voice migration and translation."},
+        {"text": "The planned outputs include a compact reader appendix and HTML/DOCX delivery."}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "这个三万字的产业史报告已经有新 outline 了，但正文其实只是换了标题，案例顺序完全没变。我要求按新 outline 重写，同时任何事实、图片和脚注都不能悄悄删掉。请接管这个项目，重写完继续做逻辑审计和项目方阅读包。",
+      "expected_output": "Enters revision mode, freezes a baseline, creates a content conservation matrix, tests whether the new structure is implemented, rewrites by mechanism rather than headings, and produces research/narrative/publication audits without silent deletion.",
+      "files": [],
+      "assertions": [
+        {"text": "The workflow freezes the existing draft before editing."},
+        {"text": "It creates a block-level content conservation matrix and detects heading-only pseudo-rewrites."},
+        {"text": "It audits claim-evidence-mechanism-boundary-transition chains before release."}
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "先不要开始搜，也不要写文章。我只想规划一个关于东南亚跨境远程工作社区的中型研究报告：需要哪些语料、数据库、访谈对象、案例字段、附录和最后的验收标准？把详细计划写到我指定的项目目录。",
+      "expected_output": "Uses plan_only mode, designs the complete research and publication architecture, records evidence and privacy boundaries, and stops before collection, crawling, interviews, or drafting.",
+      "files": [],
+      "assertions": [
+        {"text": "The response explicitly stays in plan_only mode."},
+        {"text": "It specifies corpus, coverage, registers, appendices, audits, and deliverables."},
+        {"text": "It does not begin collection, browsing, interviewing, or drafting."}
+      ]
+    }
+  ]
+}
