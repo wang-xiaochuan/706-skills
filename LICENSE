@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 706 青年空间 (706 Youth Space)
+Copyright (c) 2026 706 Youth Space
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,8 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-本仓库中的 skill 各自可能带有自己的许可声明（见各 skill 目录内的说明）。
-从外部引入的 skill 未收录在本仓库，其许可见 VENDORED.md。

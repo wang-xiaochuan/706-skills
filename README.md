@@ -201,4 +201,6 @@
 
 MIT（见 [`LICENSE`](LICENSE)）。
 
-从外部引入的 skill 遵循各自上游的许可，见 [`VENDORED.md`](VENDORED.md)。
+- 本仓库中的各 skill 如带有自己的许可声明，以该 skill 目录内的说明为准。
+- 从外部引入的 skill **未收录**在本仓库，其许可见 [`VENDORED.md`](VENDORED.md)。
+  其中 `research-writing-coach` 是 **CC-BY-NC-4.0（非商业）**，请自行确认条款。
