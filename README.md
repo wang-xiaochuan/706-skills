@@ -31,6 +31,11 @@ documentation describes what the skills do, but it has not been battle-tested by
 team. Treat the *Known gaps* section below as the honest state of things, not as
 boilerplate.
 
+<sub>中文：本仓库由王小川的数字助手在与他的交流后整理打包并代为上传，经他本人审阅确认。
+skill 本身是他与 706 在真实运营中的工作成果；清理绝对路径、补齐失效引用、核对来源归属、
+撰写本文档等工作由助手完成。之所以写清楚，是因为它影响你该怎么读这个仓库 ——
+文档描述的是这些 skill 做什么，但它没有经过第二个团队的实战验证。</sub>
+
 ## What this repository is
 
 A **collection of skills**. Each directory is one self-contained skill following the common
