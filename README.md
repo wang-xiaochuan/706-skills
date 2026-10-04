@@ -1,206 +1,243 @@
 # 706 Skills
 
-**706 青年空间在运营一个真实社区时积累的一套 AI agent 技能集。41 个 skill。**
+**41 AI agent skills built by 706 Youth Space while running a real community.**
 
-这些不是演示用的玩具 skill。它们是我们在真实运营里反复用、反复改出来的东西：
-写公众号、做小红书、归档微信群素材、剪会议视频、写研究长文、审简历、做活动排版、
-给社区里的重复劳动找自动化出口。
+These are not demo toys. They are things we used, broke, and rewrote in daily operations:
+publishing to WeChat, making Xiaohongshu posts, archiving group-chat media, cutting meeting
+recordings into publishable clips, writing long research pieces, reviewing résumés, laying out
+event pages — finding an automated exit for every repetitive task a community accumulates.
 
-我们希望它们对别的社区、写作者和研究者也用得上，所以开源出来。
+We are open-sourcing them because we think other communities, writers, and researchers can use them.
 
 ---
 
-## 这个仓库是什么
+## How this repository was made
 
-一个 **skill 集合**。每个目录是一个独立的 skill，遵循通用的 `SKILL.md` 约定：
+This repository was assembled by **Xiaochuan's personal AI assistant**, working from
+conversations with him.
+
+To be precise about what that means:
+
+- **The skills are his and 706's work.** They were written, used, and iterated on in real
+  operations. The workflows, the design systems, the trigger conditions — those came from
+  doing the work.
+- **The packaging is the assistant's work.** Sanitizing absolute paths, resolving broken
+  internal references, checking provenance, writing this README and `VENDORED.md`,
+  and uploading the result.
+- **He reviewed and approved it** before publication.
+
+We are stating this plainly because it affects how you should read the repo: the
+documentation describes what the skills do, but it has not been battle-tested by a second
+team. Treat the *Known gaps* section below as the honest state of things, not as
+boilerplate.
+
+## What this repository is
+
+A **collection of skills**. Each directory is one self-contained skill following the common
+`SKILL.md` convention:
 
 ```
 <skill-name>/
-├── SKILL.md            # 必需：触发条件 + 工作流
-├── references/         # 可选：按需加载的详细规格
-├── assets/             # 可选：模板
-├── scripts/            # 可选：可执行脚本
-└── evals/              # 可选：测试用例
+├── SKILL.md            # required: trigger conditions + workflow
+├── references/         # optional: detailed specs, loaded on demand
+├── assets/             # optional: templates
+├── scripts/            # optional: runnable scripts
+└── evals/              # optional: test cases
 ```
 
-`SKILL.md` 的 YAML frontmatter 里 `name` 与 `description` 决定这个 skill **什么时候被触发**——
-`description` 里写清触发词是让 skill 好用的关键，不是装饰。
+The `name` and `description` in `SKILL.md`'s YAML frontmatter decide **when the skill fires**.
+Writing good trigger words into `description` is what makes a skill usable — it is not decoration.
 
-## 怎么用
+## Using these
 
-**方式一：交给能读文件的 AI 助手。** 把 `SKILL.md` 和它引用的文件夹一起给它，
-或在对话里直接说"读 `<路径>/SKILL.md` 并按它执行"。
+**Option 1 — hand it to an AI assistant that can read files.** Give it the `SKILL.md` plus
+the folders it references, or just say "read `<path>/SKILL.md` and follow it".
 
-**方式二：放进你的工具支持的 skill 目录。** 不同宿主（Claude Code、Codex、其他 agent 框架）
-的 skill 目录位置不同，按你的宿主文档放。
+**Option 2 — drop it into your tool's skill directory.** The location differs per host
+(Claude Code, Codex, other agent frameworks) — check your host's docs.
 
-**没有额外依赖。** skill 本身是 Markdown；只有 `scripts/` 里的脚本需要对应运行时
-（Python 3 / Node），`requirements` 或依赖会在该 skill 的 `SKILL.md` 里写明。
+**No extra dependencies.** A skill is just Markdown. Only the scripts under `scripts/` need a
+runtime (Python 3 / Node); the requirements are stated in that skill's `SKILL.md`.
 
-## ⚠️ 路径约定（用之前先读这一段）
+## ⚠️ Path conventions — read this before using anything
 
-这些 skill 是从 706 的实际工作区里抽出来的，里面引用了我们自己的目录布局。
-为了可移植，原始绝对路径已替换成变量。**你需要把它们映射到自己的目录：**
+These skills were extracted from 706's actual workspace and reference our directory layout.
+Original absolute paths have been replaced with variables for portability.
+**You need to map them to your own directories:**
 
-| 变量 | 含义 | 我们机器上的默认值 |
-|------|------|------------------|
-| `$706_LOCAL` | 本地工作区根目录 | `~/dev/706-local-os` |
-| `$706_CLOUD` | 云同步区的资料根 | `~/Library/CloudStorage/OneDrive-个人/2026 dev` |
-| `$CODEX_HOME` | Codex/agent 的 skill 安装目录 | `~/.codex` |
+| Variable | Meaning | Our default |
+|----------|---------|-------------|
+| `$706_LOCAL` | local workspace root | `~/dev/706-local-os` |
+| `$706_CLOUD` | cloud-synced document root | `~/Library/CloudStorage/OneDrive-个人/2026 dev` |
+| `$CODEX_HOME` | your agent's skill install directory | `~/.codex` |
 
-**两种改法：**
+**Two ways to adapt:**
 
-1. **设环境变量**（推荐）——如果你的宿主会把环境变量传给脚本，设好即可
-2. **直接改文本**——把 `$706_LOCAL` 全局替换成你自己的路径
+1. **Set the environment variables** (preferred) — works if your host passes env vars to scripts
+2. **Edit the text** — global-replace `$706_LOCAL` with your own path
 
-另外这些 skill 里会提到 `706-knowledge/`、`706-media/`、`706-system/` 这类目录名，
-那是 706 的七层项目结构（`inbox / system / source / outputs / media / knowledge / archive`）。
-**如果你的工作区不是这个布局，请按语义对应调整**，不要照搬。
+You will also see references to `706-knowledge/`, `706-media/`, `706-system/` — that is 706's
+seven-layer project structure (`inbox / system / source / outputs / media / knowledge / archive`).
+**If your workspace is not laid out that way, map by meaning, not literally.**
 
-如果你只想试一两个 skill，建议先挑下面标了「通用」的那些——它们不依赖特定目录布局。
-
----
-
-## Skill 清单
-
-### 写作与风格迁移
-
-| Skill | 文件 | 一句话 |
-|-------|-----|--------|
-| `author-style-mimicry` | 6 | 以特定外国作家（中文译本）的文学声口改写公共发布内容；把"作家×译者"当复合风格单元 |
-| `debotton-chen-nan-rewrite` | 2 | 改写成阿兰·德波顿（陈广兴/南治国译本《工作颂歌》）的声口，支持多轮迭代收敛 |
-| `debotton-chen-nan-write` | 3 | 为活动回顾长文设计叙事、研究简报与大纲，并执行写作 |
-| `scholar-analyst-rewrite` | 2 | 改写成关注中国技术社会的人类学家/社会学者/分析员的写作传统（项飙、何伟、Dan Wang） |
-| `706-ghostwriter` | 2 | 通过阅读建立判断力的写作伙伴：知识摄入 → 四层审视 → 协作写作 |
-| `prewriting` | 12 | 为活动或项目写作整理原始素材，产出可追溯的项目学习笔记 |
-| `moments-work-diary` | 2 | 生成和迭代朋友圈/微博式工作日报，含 tone check |
-
-### 研究与判断
-
-| Skill | 文件 | 一句话 |
-|-------|-----|--------|
-| `personal-decision-harness` | 12 | 个人判断与判断能力训练系统：做、不做、换种方式做，附证据与改判条件 |
-| `medium-research-report-harness` | 30 | 构建/续写/重构/审计/翻译/打包 8000–40000 字证据型研究报告 |
-| `rhetorical-structure-harness` | 20 | 为演讲/路演/答辩搭两层修辞结构：场合—听众—目的 → 逐节 topic sentence |
-| `literature-search` | 2 | 学术文献检索与结构化归档，产出带来源与核验状态的素材清单 |
-| `706-long-article-distilling` | 2 | 把长文/PDF/报告/访谈蒸馏成八段式结构化笔记 |
-| `skill-creator` | 2 | skill 评测与迭代：样例、with-skill/baseline 对照、评分与触发测试 |
-| `skill-optimizer` | 1 | 从五个维度系统审查 skill 质量并输出优化报告 |
-
-### 内容发布（公众号 / 小红书）
-
-| Skill | 文件 | 一句话 |
-|-------|-----|--------|
-| `wechat-design` | 5 | 公众号排版设计系统：9 套色板 × 排版开关，自由组合 |
-| `wechat-publish` | 3 | 把 Notion / Markdown 排成可粘贴进公众号编辑器的富文本 HTML |
-| `wechat-publish-2.0` | 1 | 视觉控制面板 + 实时预览 + LLM 辅助调整 |
-| `wechat-slides` | 2 | 竖版 HTML 图片卡片 / 截图幻灯片，默认 750×1334px |
-| `xhs-copywriter` | 2 | 小红书标题、正文与话题标签 |
-| `xiaohongshu-poster` | 2 | 小红书活动封面海报，默认 HTML 1080×1440px |
-| `content-intelligence-search` | 2 | 跨平台内容情报：找高传播内容（阅读量/点赞量门槛） |
-| `706-notion-writer` | 6 | 在 Notion 上撰写活动招募长文，遵循 706 社群调性 |
-
-### 媒体与素材
-
-| Skill | 文件 | 一句话 |
-|-------|-----|--------|
-| `media-ingest` | 2 | 处理媒体库 inbox 的待分类图片：场景识别 → 活动类型 → 地点归档 |
-| `wechat-image-archive` | 2 | 微信上下文同步入口：图片素材、群总结、关系维护三条下游 |
-| `wechat-article-smart-archive` | 17 | 按公众号名/关键词与时间范围发现并归档公开文章，产出可离线分享的 HTML |
-| `speech-to-attention-video` | 9 | 会议/访谈/讲座素材 → 叙事版、主题版、注意力切片、字幕与交付包 |
-| `706-audio-transcribe-archive` | 3 | 音频转中文时间戳转录稿，含多人说话人对齐与语料归档 |
-| `video-download` | 2 | B 站 + YouTube 统一下载归档，支持批量、断点续跑、字幕抓取 |
-| `image-ocr` | 1 | 本地 Tesseract 中文 OCR / 批量文字提取 |
-| `image-to-html` | 2 | 图片文件夹打包成 Base64 内嵌 HTML，便于喂给模型 |
-
-### 文档与工具
-
-| Skill | 文件 | 一句话 |
-|-------|-----|--------|
-| `md-to-pdf-songti` | 2 | Markdown 经 XeLaTeX 渲染为宋体 PDF |
-| `lark-docx-editor` | 1 | 飞书文档 block API 的读写编辑封装 |
-| `gdocs-mcp` | 2 | Google Docs + Drive MCP 服务器（能力参考，非触发型） |
-| `browser` | 1 | 浏览器自动化：导航、读取、点击、填表、截图、看控制台与网络请求 |
-| `harness-goal-runner` | 5 | 设计本地 goal harness，让 agent 持续朝一个目标推进 |
-
-### 职业
-
-| Skill | 文件 | 一句话 |
-|-------|-----|--------|
-| `resume-from-evidence` | 9 | 从聊天记录 + 旧简历 + 目标岗位，经经历核验与岗位逆向分析产出真实简历 |
-| `resume-hr-review` | 7 | 模拟招聘初筛 HR 做要求—证据对比，输出覆盖度与修改优先级 |
-
-### 运营与信号（706 专用）
-
-| Skill | 文件 | 一句话 |
-|-------|-----|--------|
-| `task-sync` | 1 | 任务记录的录入、同步、分配、改期、关闭与批量盘点 |
-| `task-distribution` | 2 | 读取待处理条目 → 判断归属项目 → 写入对应项目任务池 |
-| `panel-curator` | 2 | 研究圆桌嘉宾并整理主持指南 |
-| `binance-4h-signal` | 25 | 1H K 线合成 4H，23 个指标融合 + regime 动态权重，输出交易信号 |
+If you only want to try one or two skills, start with the ones marked **general-purpose** below —
+they do not depend on a specific directory layout.
 
 ---
 
-## ⚠️ 已知缺失（用之前先看）
+## Skill index
 
-整理这个仓库时逐个校验了 `SKILL.md` 里的内部引用，发现 **4 个 skill 引用了未随仓库提供的文件**。
-已在各自的 `SKILL.md` 顶部加了说明。分成两类：
+Four groups, one for each kind of work a community actually does:
+**operations · media · research · writing.**
 
-### 核心实现缺失 —— 目前是骨架，不能直接跑
+<sub>中文：41 个 skill 分四类 —— 运营 · 媒体 · 研究 · 写作。分类标准是"这份工作本身属于哪一类"，不是技术栈。</sub>
 
-| Skill | 缺什么 |
-|-------|--------|
-| `content-intelligence-search` | `references/wechat.md` 与 `references/xiaohongshu.md`（两个平台各自的搜索实现）。SKILL.md 只有工作流骨架 |
-| `lark-docx-editor` | `scripts/lark_docx.py`（飞书 Docx block API 的 Python 封装）。SKILL.md 记录了 API 用法与 block 结构规格，但脚本本身没有 |
+### Operations — running the thing
 
-**我们的建议是先把它们当设计文档读，要用的话自己补实现。**
-（如果你觉得放一个不能跑的 skill 反而减分，删掉这两个是最干净的处理。）
+Keeping a community's day-to-day machinery moving: tasks, tooling, events, money signals.
 
-### 参考文件缺失 —— 不影响主流程
+| Skill | Files | What it does |
+|-------|-------|--------------|
+| `task-sync` | 1 | Create, sync, assign, reschedule, close, reopen, and batch-audit task records |
+| `task-distribution` | 2 | Reads pending items → determines owning project → writes into that project's task pool |
+| `panel-curator` | 2 | Researches panellists and assembles moderation guides |
+| `harness-goal-runner` | 5 | Designs a local goal harness that keeps an agent pushing toward one objective |
+| `browser` | 1 | Browser automation: navigate, read, click, fill forms, screenshot, inspect console and network |
+| `lark-docx-editor` | 1 | Read/write wrapper around the Feishu (Lark) Docx block API |
+| `gdocs-mcp` | 2 | Google Docs + Drive MCP server (capability reference, not trigger-based) |
+| `md-to-pdf-songti` | 2 | Renders Markdown to PDF via XeLaTeX using Songti SC |
+| `binance-4h-signal` | 25 | Synthesises 4H candles from 1H, fuses 23 indicators with regime-dynamic weights, emits trade signals |
+| `resume-from-evidence` | 9 | Builds a truthful résumé from chat logs + old résumés + target roles, via experience verification and reverse role analysis |
+| `resume-hr-review` | 7 | Simulates a recruiter's initial screen: requirement–evidence comparison, coverage, and revision priorities |
+| `skill-creator` | 2 | Skill evaluation and iteration: samples, with-skill/baseline comparison, scoring, trigger testing |
+| `skill-optimizer` | 1 | Reviews skill quality across five dimensions and outputs an improvement report |
 
-| Skill | 缺什么 |
-|-------|--------|
-| `skill-creator` | `references/schemas.md`（评测 schema 全文）、`assets/eval_review.html`（评审页模板） |
-| `xiaohongshu-poster` | `references/template.html`（某一期的完整排版实现，原文即说明"只作参考，不要直接套用"） |
+### Media — getting it out, keeping it
 
-另外修复的：`wechat-image-archive`、`prewriting`、`task-sync` 三个 skill 引用的文件
-原本散落在工作区其他位置，已一并打包进来并改成 skill 内相对路径，所以它们是自包含的。
-`debotton-chen-nan-write` 与 `skill-creator` 的 frontmatter `name` 原本与目录名不一致，
-已对齐（多数宿主的 skill 安装依赖二者一致）。
+Publishing, archiving, and turning raw recordings into something publishable.
 
+| Skill | Files | What it does |
+|-------|-------|--------------|
+| `wechat-design` | 5 | WeChat article layout design system: 9 colour palettes × layout switches, freely combined |
+| `wechat-publish` | 3 | Turns Notion / Markdown into rich HTML you can paste straight into the WeChat editor |
+| `wechat-publish-2.0` | 1 | Visual control panel + live preview + LLM-assisted adjustment |
+| `wechat-slides` | 2 | Vertical HTML image cards / screenshot slides, default 750×1334px |
+| `xhs-copywriter` | 2 | Xiaohongshu titles, body copy, and topic tags |
+| `xiaohongshu-poster` | 2 | Xiaohongshu event cover posters, default HTML 1080×1440px |
+| `content-intelligence-search` | 2 | Cross-platform content intelligence: find high-reach posts by view/like thresholds |
+| `706-notion-writer` | 6 | Writes event recruitment long-form in Notion, matching 706's community register |
+| `media-ingest` | 2 | Sorts incoming media-inbox images: scene detection → event type → location archiving |
+| `wechat-image-archive` | 2 | WeChat context sync entry point: image assets, group summaries, relationship maintenance |
+| `wechat-article-smart-archive` | 17 | Discovers and archives public WeChat articles by account/keyword and date range; produces offline-shareable HTML |
+| `speech-to-attention-video` | 9 | Meeting / interview / lecture footage → narrative cut, thematic cut, attention slices, subtitles, delivery package |
+| `706-audio-transcribe-archive` | 3 | Audio to timestamped Chinese transcript, with multi-speaker alignment and corpus archiving |
+| `video-download` | 2 | Unified Bilibili + YouTube download and archiving: batch, resumable, subtitle capture |
+| `image-ocr` | 1 | Local Tesseract Chinese OCR / batch text extraction |
+| `image-to-html` | 2 | Packs an image folder into a Base64-embedded HTML file for feeding images to a model |
 
+### Research — turning experience into something citable
 
-上面大部分 skill 是通用的——`rhetorical-structure-harness`、`personal-decision-harness`、
-`resume-from-evidence`、`speech-to-attention-video`、`md-to-pdf-songti` 这类，
-拿过去就能用，最多改一下路径。
+Fieldwork, evidence, and the ability to tell what you actually know.
 
-标了「706 专用」的几个（`task-sync`、`task-distribution`、`media-ingest`、
-`wechat-image-archive`、`706-notion-writer`）**和我们的目录结构、任务系统、媒体库强耦合**。
-读它们主要能看的是**方法**——一个社区怎么把重复劳动拆成可自动化的 skill——
-而不是直接拿来跑。用之前先看「路径约定」那一节。
+| Skill | Files | What it does |
+|-------|-------|--------------|
+| `personal-decision-harness` | 12 | Personal judgement and judgement-training system: do it, don't do it, or do it differently — with evidence and revisit conditions |
+| `medium-research-report-harness` | 30 | Build, continue, restructure, audit, translate, and package evidence-rich research reports of roughly 8,000–40,000 Chinese characters |
+| `rhetorical-structure-harness` | 20 | Two-layer rhetorical structure for spoken delivery: occasion–audience–purpose → section-by-section topic sentence + rhetorical moves |
+| `literature-search` | 2 | Academic literature search with structured archiving; produces a source list with verification status |
+| `706-long-article-distilling` | 2 | Distils long articles / PDFs / reports / interviews into eight-part structured notes |
 
-## 未收录的 skill
+### Writing — finding the voice
 
-这个仓库**只放我们自己写的**。从外部引入的 skill 有 14 个，
-它们有自己的上游、许可与更新渠道，所以没有收进来。
+Style transfer, narrative design, and the raw material that precedes it.
 
-完整名单、上游地址与许可说明见 [`VENDORED.md`](VENDORED.md)。
+| Skill | Files | What it does |
+|-------|-------|--------------|
+| `author-style-mimicry` | 6 | Rewrites public-facing content in the literary voice of a specific foreign author (via Chinese translation); treats "author × translator" as one compound style unit |
+| `debotton-chen-nan-rewrite` | 2 | Rewrites drafts in Alain de Botton's voice (Chen Guangxing / Nan Zhiguo translation of *The Pleasures and Sorrows of Work*), iterating to convergence |
+| `debotton-chen-nan-write` | 3 | Designs narrative, research brief, and outline for event retrospectives, then writes them |
+| `scholar-analyst-rewrite` | 2 | Rewrites in the tradition of anthropologists / sociologists / analysts writing on technology and society in China (Xiang Biao, Peter Hessler, Dan Wang) |
+| `706-ghostwriter` | 2 | A writing partner that builds judgement through reading: intake → four-layer review → collaborative writing |
+| `prewriting` | 12 | Turns raw material into traceable project learning notes covering people, dates, quotes, scenes, organisations, background, numbers |
+| `moments-work-diary` | 2 | Generates and iterates short social-media-style work diaries, with a tone check |
 
-> 其中 `research-writing-coach` 是 **CC-BY-NC-4.0（非商业）**，
-> 用之前请自己确认许可条款。
+---
 
-## 一些背景
+## ⚠️ Known gaps — read before relying on anything
 
-706 青年空间是一个由青年自发组织、共同维护的公共空间网络，2012 年至今。
-我们不是 AI 公司，只是一群用工具解决自己问题的人。
+While packaging this repository we validated every internal reference in every `SKILL.md`.
+**Four skills reference files that are not included.** Each has a note at the top of its
+`SKILL.md` explaining what is missing. They fall into two groups:
 
-这套 skill 是我们对"一个社区需要什么基础设施"的部分回答：
-把反复发生的事写下来，让它下次不用再从零开始。
+### Missing core implementation — currently skeletons, not runnable
+
+| Skill | Missing |
+|-------|---------|
+| `content-intelligence-search` | `references/wechat.md` and `references/xiaohongshu.md` — the per-platform search implementations. The `SKILL.md` is only the workflow skeleton |
+| `lark-docx-editor` | `scripts/lark_docx.py` — the Python wrapper around the Feishu Docx block API. The `SKILL.md` documents the API usage and block structure, but the script itself is absent |
+
+**Our recommendation is to read these two as design documents and supply your own implementation
+if you want to run them.** (If you would rather not ship a skill that cannot run, deleting these
+two is the cleanest option.)
+
+### Missing reference files — does not affect the main flow
+
+| Skill | Missing |
+|-------|---------|
+| `skill-creator` | `references/schemas.md` (full evaluation schema), `assets/eval_review.html` (review page template) |
+| `xiaohongshu-poster` | `references/template.html` (one issue's full layout implementation — the text itself says "for reference only, do not copy directly") |
+
+Also fixed during packaging: three skills (`wechat-image-archive`, `prewriting`, `task-sync`)
+referenced files that were scattered elsewhere in the workspace. Those files are now bundled in
+and the references rewritten as skill-relative paths, so those skills are self-contained.
+Two skills (`debotton-chen-nan-write`, `skill-creator`) had frontmatter `name` values that did
+not match their directory names; those are now aligned, since most hosts install skills by that match.
+
+## General-purpose vs 706-specific
+
+The four groups above are not a portability rating — they are what the work *is*.
+Portability cuts across them:
+
+**General-purpose** (work as-is once you fix the paths): `rhetorical-structure-harness`,
+`personal-decision-harness`, `medium-research-report-harness`, `resume-from-evidence`,
+`resume-hr-review`, `speech-to-attention-video`, `md-to-pdf-songti`, all seven Writing skills,
+and most of Media.
+
+**706-specific** (tightly coupled to our directory structure, task system, and media library):
+`task-sync`, `task-distribution`, `media-ingest`, `wechat-image-archive`, `706-notion-writer`.
+
+What is useful in those five is the *method* — how a community breaks repetitive work into
+automatable skills — rather than running them directly. Read the *Path conventions* section first.
+
+<sub>中文：上面四类是"工作本身属于哪一类"，不是可移植性评级。可移植性另说 ——
+通用的有 `rhetorical-structure-harness`、`personal-decision-harness`、`resume-from-evidence`、
+`speech-to-attention-video`、`md-to-pdf-songti` 及写作类全部；强耦合 706 的有
+`task-sync`、`task-distribution`、`media-ingest`、`wechat-image-archive`、`706-notion-writer`，
+读它们主要看方法而不是直接跑。</sub>
+
+## Skills not included
+
+This repository contains **only skills we wrote ourselves**. Fourteen skills were brought in
+from outside; they have their own upstreams, licences, and update channels, so they are not
+included here.
+
+The full list with upstream URLs and licence notes is in [`VENDORED.md`](VENDORED.md).
+
+> One of them, `research-writing-coach`, is **CC-BY-NC-4.0 (non-commercial)** —
+> check the terms yourself before use.
+
+## Background
+
+706 Youth Space is a self-organised, collectively maintained public space network, running
+since 2012. We are not an AI company — just a group of people using tools to solve our own problems.
+
+This skill collection is part of our answer to "what infrastructure does a community need":
+write down the things that keep happening, so next time you do not start from zero.
 
 ## License
 
-MIT（见 [`LICENSE`](LICENSE)）。
+MIT — see [`LICENSE`](LICENSE).
 
-- 本仓库中的各 skill 如带有自己的许可声明，以该 skill 目录内的说明为准。
-- 从外部引入的 skill **未收录**在本仓库，其许可见 [`VENDORED.md`](VENDORED.md)。
-  其中 `research-writing-coach` 是 **CC-BY-NC-4.0（非商业）**，请自行确认条款。
+- Any licence notice inside an individual skill's directory takes precedence for that skill.
+- Externally sourced skills are **not included** here; see [`VENDORED.md`](VENDORED.md).
+  One of them, `research-writing-coach`, is **CC-BY-NC-4.0 (non-commercial)** — verify the terms yourself.
